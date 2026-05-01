@@ -168,3 +168,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+"""
+la Responses API di Groq supporta solo server MCP remoti via HTTPS, non localhost
+stdio. Il tuo casse_server.py gira in locale via stdio. Per usare la Responses API
+dovresti esporre il server via HTTP su un URL raggiungibile da Groq (i loro server
+devono poterci parlare, non basta localhost).
+
+Sì, il codice demo_mcp_con_supporto_anthropic.py ha lo stesso problema. Ho scritto
+"url": "http://localhost:8000/mcp/" ma in realtà i server di Anthropic non possono
+raggiungere il tuo localhost — devono connettersi loro al server MCP, non il tuo PC.
+Per farlo funzionare davvero avresti due opzioni: hostare il server da qualche parte
+raggiungibile (un VPS, o un tunnel tipo ngrok che espone localhost su un URL pubblico),
+oppure usare l'approccio locale con il SDK TypeScript di Anthropic che supporta stdio"""
