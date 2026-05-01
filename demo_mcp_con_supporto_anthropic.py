@@ -171,14 +171,24 @@ if __name__ == "__main__":
 
 
 """
+IMPORTANTI CHIARIMENTI
+
 la Responses API di Groq supporta solo server MCP remoti via HTTPS, non localhost
 stdio. Il tuo casse_server.py gira in locale via stdio. Per usare la Responses API
 dovresti esporre il server via HTTP su un URL raggiungibile da Groq (i loro server
 devono poterci parlare, non basta localhost).
 
-Sì, il codice demo_mcp_con_supporto_anthropic.py ha lo stesso problema. Ho scritto
-"url": "http://localhost:8000/mcp/" ma in realtà i server di Anthropic non possono
-raggiungere il tuo localhost — devono connettersi loro al server MCP, non il tuo PC.
-Per farlo funzionare davvero avresti due opzioni: hostare il server da qualche parte
-raggiungibile (un VPS, o un tunnel tipo ngrok che espone localhost su un URL pubblico),
-oppure usare l'approccio locale con il SDK TypeScript di Anthropic che supporta stdio"""
+E no, il codice demo_mcp_con_supporto_anthropic.py non ha lo stesso problema. Il SDK
+di anthropic (e altri) se ne occupano
+"""
+
+"""
+In merito a json RCP:
+
+quindi json rcp agisce solo nella comunicazione tra il server di anthropic
+(che elabora il mio prompt ed eventaulemnte usa i tool attraverso json rcp)
+(oppure se il sdk non ha il supporto nativo completo per mcp, il server ritorna un
+json con anche dei tool_use,  e il mio codice li deve despacchettare e chiamare lui
+i tool con json rcp) , mentre in tool use specifico api sdk, dato che avviene tutto
+sul mio pc, non serve??
+"""
