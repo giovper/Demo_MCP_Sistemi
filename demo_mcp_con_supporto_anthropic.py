@@ -178,8 +178,9 @@ stdio. Il tuo casse_server.py gira in locale via stdio. Per usare la Responses A
 dovresti esporre il server via HTTP su un URL raggiungibile da Groq (i loro server
 devono poterci parlare, non basta localhost).
 
-E no, il codice demo_mcp_con_supporto_anthropic.py non ha lo stesso problema. Il SDK
-di anthropic (e altri) se ne occupano
+E no, il codice demo_mcp_con_supporto_anthropic.py non ha lo stesso problema.
+CI sono 2 approcci diversi, quello con un indirizzo raggiungibile e client
+MCP locale. Il SDK di anthropic (e altri) se ne occupano
 """
 
 """
